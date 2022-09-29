@@ -1,0 +1,105 @@
+<html>
+    <head>
+        <title>My Project</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="icon" type="image/x-icon" href="assets/images/logo.png">
+    </head>
+    <body class="bg-grey">
+    
+        <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container">
+            <a class="navbar-brand" href="/">
+              <img src="assets/images/logo.png" alt="logo" srcset="">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  {{if .DataSession.IsLogin}}
+                  <a class="nav-link active text-dark fw-bold" aria-current="page" href="/addMyProject">Add Project</a>
+                  {{end}}
+                </li>
+              </ul>
+              {{if .DataSession.IsLogin}}
+              <div>
+                <a href="#" class="text-dark px-2 fw-bold text-decoration-none"> Hallo, {{.DataSession.UserName}}</a>
+                <a href="/logout" class="text-dark px-2 text-decoration-none">Logout</a>
+              </div>
+              {{else}}
+              <a href="/form-register" class="text-dark fw-bold px-2 text-decoration-none">Register</a>
+              <a href="/form-login" class="text-dark px-2 text-decoration-none">Login</a>
+              {{end}}
+              <a href="/contact" class="btn bg-dark text-white px-2">Contact Me</a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="container w-50 d-flex shadow p-3 mb-5 bg-body rounded justify-content-evenly mt-5">
+            <div class="w-50">
+                <h2>Hi Welcome to my hut</h2>
+                
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tristique purus orci libero egestas ut. Augue suspendisse blandit lorem massa ipsum, urna, egestas mi, lacinia. Dui fusce etiam libero, lectus amet, risus molestie malesuada. Odio nam purus consectetur euismod congue leo quisque. Turpis amet sollicitudin nunc non in lectus dolor amet. Amet ullamcorper faucibus tincidunt accumsan ac adipiscing arcu. Donec tristique at proin maecenas. Ante elit et iaculis ac sit.</p>
+                
+                <div>
+                    <div class="d-flex fs-5">
+                        <span class="me-2">contact</span>
+                        <p>Download CV <i class="fa-solid fa-download"></i></p>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between w-50">
+                    <i class="fa-brands fa-linkedin fa-2x"></i>
+                    <i class="fa-brands fa-square-instagram fa-2x"></i>
+                    <i class="fa-brands fa-facebook fa-2x"></i>
+                    <i class="fa-brands fa-square-twitter fa-2x"></i>
+                </div>
+            </div>
+            <div>
+                <div class="card shadow" style="width: 18rem;">
+                    <img src="assets/images/FotoTugas.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title text-center">Yudha Manggala</h5>
+                      <p class="card-text text-center">Fullstack Developer</p>
+                    </div>
+                  </div>
+            </div>
+        </div>
+
+        <div class="bg-light">
+            <div>
+                <h2 class="mb-3 text-center">MY PROJECT</h2>
+            </div>
+            <div class="container w-50 d-flex flex-wrap">
+                {{range $index, $data := .MP}}
+                <div class="p-2">
+                    <div class="card shadow p-2 bg-body rounded " style="width: 18rem;">
+                          <img src="/uploads/{{$data.Image}}" class="card-img-top img-thumbnail" alt="...">
+                        <div class="card-body">
+                          <a href="/myProjectDetail/{{$data.ID}}" class="text-decoration-none">
+                            <h5 class="card-title">{{$data.Title}}</h5>
+                          </a>
+                          <p>Durasi : {{$data.Duration}} | Oleh : {{$data.User}}</p>
+                          <p class="card-text">{{$data.Description}}</p>
+                          {{range $index, $technologies := $data.Technologies}}
+                          <i class="fa-brands fa-{{$technologies}} fa-xl m-2"></i>
+                          {{end}}
+                          <div class="d-flex mt-2">
+                            <a href="/editProject/{{$data.ID}}"type="button" class="btn btn-dark w-50 mx-1">Edit</a>
+                            <a href="/deleteMP/{{$data.ID}}" type="button" class="btn btn-dark w-50 mx-1">Delete</a>
+                          </div>
+                          
+                        </div>
+                    </div> 
+                </div>
+                {{end}}
+            </div>
+        </div>
+    </body>
+</html>

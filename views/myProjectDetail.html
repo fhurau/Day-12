@@ -1,0 +1,123 @@
+<html>
+
+<head>
+    <title></title>
+    <link rel="stylesheet" href="/index.html">
+    <link rel="stylesheet" href="/assets/css/MyProjectDetail.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="/assets/images/logo.png">
+    
+</head>
+<body>
+    
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container">
+          <a class="navbar-brand" href="/">
+            <img src="/assets/images/logo.png" alt="logo" srcset="">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                {{if .DataSession.IsLogin}}
+                  <a class="nav-link active text-dark fw-bold" aria-current="page" href="/addMyProject">Add Project</a>
+                {{end}}
+              </li>
+            </ul>
+            <a href="/contact" class="btn bg-dark text-white px-2">Contact Me</a>
+          </div>
+        </div>
+      </nav>
+    
+    <div class="main-body ">
+        <div>
+            <h1>{{.MP.Title}}</h1>
+            <Div class="body-top">
+
+                <div class="m-2 p-2 w-50">
+                    <img src="/uploads/{{.MP.Image}}" class="img-thumbnail float-start" alt="foto">
+                </div>
+            
+                <div>
+                    <div class="duration">
+                        <p>Duration<p>
+                        <div class="date">
+                            <i class="fa-solid fa-calendar-days"></i>
+                            <span class="fs-6 fw-bolder">{{.MP.Formatstartdate}} - {{.MP.Formatenddate}}</span>
+                        </div>
+                        
+                        <div class="range">
+                            <i class="fa-regular fa-clock"></i>
+                            <span>{{.MP.Duration}} | {{.MP.User}}</span>
+                        </div>
+                        
+                    </div>
+                    <div class="technologies">
+                        <p>Technologies</p>
+                        {{range $index, $technologies := .MP.Technologies}}
+                        <div class="p-2 ">
+                            {{if eq $technologies "react"}}
+                            <i class="fa-brands fa-react fa-xl"></i>
+                            <span>React JS</span>
+                            {{end}}
+                            {{if eq $technologies "java"}}
+                            <i class="fa-brands fa-java fa-xl"></i>
+                            <span>Java</span>
+                            {{end}}
+                        
+
+                        
+                            {{if eq $technologies "node"}}
+                            <i class="fa-brands fa-node-js fa-xl"></i>
+                            <span>Node JS</span>
+                            {{end}}
+                            {{if eq $technologies "golang"}}
+                            <i class="fa-brands fa-golang fa-xl"></i>
+                            <span>Golang</span>
+                            {{end}}
+                        </div>
+                        {{end}}
+                    </div>
+                </div>
+                
+            </div>
+            
+        </Div>
+        
+    </div>
+    
+
+    <div class="para">
+        <p>
+            {{.MP.Description}}
+        </p>
+        
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque convallis sem nec erat ornare pulvinar. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam erat volutpat. Nunc bibendum luctus eleifend. Mauris semper ultrices aliquam. Nullam sit amet condimentum velit. Vestibulum dictum hendrerit commodo. Sed maximus vel urna eget rhoncus. Sed at felis aliquam, pulvinar diam ac, imperdiet massa. Sed lobortis ullamcorper erat, ut vestibulum urna cursus nec. Vestibulum fringilla elit a lobortis laoreet. Donec placerat tincidunt est, vitae venenatis ipsum consectetur sed. Praesent dapibus tellus ac velit luctus, nec lacinia turpis lacinia. Phasellus vehicula ligula vel rhoncus feugiat. In non magna diam.
+        </p>
+        <p>
+            Nullam quis est varius, bibendum nunc vel, facilisis mi. Sed pharetra est nibh. Nullam et auctor libero. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam erat volutpat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Donec vitae tempor quam. Pellentesque congue tempor laoreet. Etiam maximus, erat ut ultrices pellentesque, ex lacus pretium ligula, ut varius arcu quam non sapien.
+            
+        </p>
+        <p>
+            Proin bibendum felis at arcu condimentum, id eleifend dolor lobortis. Phasellus posuere semper enim, non fermentum sapien pulvinar in. Cras quis ornare lacus. Etiam dictum libero sed erat bibendum egestas. Quisque mattis aliquam risus et vehicula. Donec vitae ultrices nisi. Sed bibendum magna non luctus iaculis. Integer ut condimentum nulla, et semper neque. Nulla auctor, odio sed sollicitudin pretium, quam lectus ultricies tellus, vitae tincidunt magna nisl eget mauris. In dictum id nunc interdum eleifend. Vivamus vitae felis aliquet, molestie velit at, rutrum arcu. Ut at egestas arcu. Donec et luctus eros. Aliquam gravida gravida nunc vel imperdiet.
+        </p>
+        <p>
+            Nulla venenatis metus vel nunc pulvinar, in ornare dolor posuere. Duis aliquam quam nunc, vel condimentum nisl faucibus vel. Duis molestie, ligula sit amet ornare maximus, nibh nunc tristique eros, sit amet vulputate velit arcu in urna. Integer ultrices varius placerat. Maecenas faucibus efficitur purus, in faucibus eros pharetra ac. Donec at ullamcorper dui, ut commodo leo. Integer eleifend ut magna non sagittis. Etiam placerat ipsum in magna efficitur, eu egestas tortor tincidunt.
+        </p>
+        <p>
+            Cras finibus libero at orci finibus ultrices. Curabitur semper felis lacus, a hendrerit risus pulvinar et. Duis porta condimentum metus, eget malesuada orci hendrerit a. Pellentesque dictum massa a nisi facilisis, faucibus ullamcorper enim aliquam. Phasellus sagittis tincidunt eros nec placerat. Sed lacinia dignissim magna, quis suscipit quam tristique vel. Nunc ac luctus tortor. Integer vehicula nisi vel sapien pharetra eleifend. Nam a elit imperdiet neque gravida tincidunt. Aenean sodales velit eu pellentesque scelerisque. Fusce sed nunc rutrum, viverra mi tincidunt, rutrum tellus. Donec hendrerit, sapien vel ornare semper, ligula diam sagittis magna, ultrices porttitor nisl velit eu tellus. Suspendisse id tellus justo. Phasellus ut cursus elit. Donec dictum, odio sit amet malesuada gravida, neque nisl vulputate erat, sed volutpat metus tortor vulputate velit.
+        </p>
+    </div>
+</body>
+
+
+
+</html>
